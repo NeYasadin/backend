@@ -10,6 +10,7 @@ const Customer = sequelize.define("customer", {
   createdAt: {
     type: DataTypes.DATE,
     allowNull: false,
+    defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
   },
   mail: {
     type: DataTypes.STRING,
