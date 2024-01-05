@@ -1,4 +1,6 @@
 import sequelize from "../db/sequelize";
+import CompanyAgent from "./company-agent";
+import Complaint from "./complaint";
 import { Sequelize, DataTypes } from "sequelize";
 
 const Solution = sequelize.define("solution", {
@@ -23,6 +25,18 @@ const Solution = sequelize.define("solution", {
   companyAgentId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    references: {
+      model: CompanyAgent,
+      key: "id",
+    },
+  },
+  complaintId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: Complaint,
+      key: "id",
+    },
   },
 });
 

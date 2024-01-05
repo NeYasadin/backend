@@ -38,4 +38,4 @@ const Complaint = sequelize.define("complaint", {
   },
 });
 
-module.exports = Complaint;
+export default Complaint;
