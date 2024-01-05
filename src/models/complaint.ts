@@ -1,5 +1,7 @@
 import sequelize from "../db/sequelize";
 import { DataTypes } from "sequelize";
+import Company from "./company";
+import Customer from "./customer";
 
 const Complaint = sequelize.define("complaint", {
   id: {
@@ -16,6 +18,10 @@ const Complaint = sequelize.define("complaint", {
   },
   companyId: {
     type: DataTypes.INTEGER,
+    references: {
+      model: Company,
+      key: "id",
+    },
   },
   meToo: {
     type: DataTypes.INTEGER,
@@ -27,6 +33,10 @@ const Complaint = sequelize.define("complaint", {
   },
   customerId: {
     type: DataTypes.INTEGER,
+    references: {
+      model: Customer,
+      key: "id",
+    },
   },
   priorityLevel: {
     type: DataTypes.INTEGER,
@@ -35,6 +45,10 @@ const Complaint = sequelize.define("complaint", {
   isFinished: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
+  },
+  solutionIds: {
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    allowNull: true,
   },
 });
 
