@@ -1,6 +1,5 @@
 import express from "express";
 import SubscriptionController from "../controllers/subscription-controller";
-import { nextTick } from "process";
 
 const router = express.Router();
 
@@ -14,6 +13,9 @@ router.patch("/:id", (req,res,next) => {
 });
 router.delete("/:id", (req,res,next) => {
     subscriptionController.deleteSubscription(req,res,next);
+});
+router.get("/", (req,res,next) => {
+    subscriptionController.getSubscription(req,res,next);
 });
 
 export default router;

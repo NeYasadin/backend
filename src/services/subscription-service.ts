@@ -32,6 +32,17 @@ class SubscriptionService {
       return console.error(err);
     }
   };
+  getSubscription = async (req: any, res: any, next: any) => {
+    try {
+      return Subscription.findAll({
+        where: {
+          companyId: req.body.companyId,
+        },
+      });
+    } catch (err) {
+      return console.error(err);
+    }
+  };
 } 
 
 export default SubscriptionService;

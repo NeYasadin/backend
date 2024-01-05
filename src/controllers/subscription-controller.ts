@@ -16,6 +16,10 @@ class SubscriptionController {
     await subscriptionService.deleteSubscription(req, res, next);
     res.status(200).json({ message: "Subscription deleted" });
   };
+  getSubscription = async (req: any, res: any, next: any) => {
+    const subscriptions = await subscriptionService.getSubscription(req, res, next);
+    res.status(200).json({subscriptions: subscriptions});
+  };
 
 }
 
