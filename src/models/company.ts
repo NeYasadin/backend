@@ -1,6 +1,7 @@
 import sequelize from "../db/sequelize";
 import { DataTypes } from "sequelize";
 import Sequelize from "sequelize";
+//asdgsd
 
 const Company = sequelize.define('company', {
   id: {
