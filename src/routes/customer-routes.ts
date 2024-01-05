@@ -9,4 +9,8 @@ router.post("/", (req, res, next) => {
   customerController.createCustomer(req, res, next);
 });
 
+router.patch("/:id", (req, res, next) => {
+  customerController.updateCustomer(req, res, next);
+});
+
 export default router;
