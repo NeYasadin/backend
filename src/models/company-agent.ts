@@ -27,7 +27,7 @@ const CompanyAgent = sequelize.define("company_agent", {
   },
   companyId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
     references: {
       model: Company,
       key: "id",
