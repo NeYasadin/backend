@@ -1,5 +1,6 @@
 import sequelize from "../db/sequelize";
 import { DataTypes } from "sequelize";
+import Company from "./company";
 
 const CompanyAgent = sequelize.define("company_agent", {
   id: {
@@ -27,10 +28,10 @@ const CompanyAgent = sequelize.define("company_agent", {
   companyId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-  },
-  subscriptionId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
+    references: {
+      model: Company,
+      key: "id",
+    },
   },
 });
 
