@@ -32,6 +32,19 @@ class CustomerService {
       return console.error(err);
     }
   };
+
+  authenticateCustomer = async (req: any, res: any, next: any) => {
+    try {
+      return Customer.findOne({
+        where: {
+          mail: req.body.mail,
+          password: req.body.password,
+        },
+      });
+    } catch (err) {
+      return console.error(err);
+    }
+  };
 }
 
 export default CustomerService;

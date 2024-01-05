@@ -17,4 +17,8 @@ router.delete("/:id", (req, res, next) => {
   customerController.deleteCustomer(req, res, next);
 });
 
+router.get("/authenticate", (req, res, next) => {
+  customerController.authenticateCustomer(req, res, next);
+});
+
 export default router;

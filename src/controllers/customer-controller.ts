@@ -15,6 +15,16 @@ class CustomerController {
     await customerService.deleteCustomer(req, res, next);
     res.status(200).json({ message: "Customer deleted" });
   };
+
+  authenticateCustomer = async (req: any, res: any, next: any) => {
+    const customer = await customerService.authenticateCustomer(req, res, next);
+    if (customer == null) {
+      res.status(401).json({ customer: null });
+      return;
+    } else {
+      res.status(200).json({ customer: customer });
+    }
+  };
 }
 
 export default CustomerController;
