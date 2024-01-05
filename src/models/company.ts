@@ -45,4 +45,4 @@ const Company = sequelize.define("company", {
   },
 });
 
-module.exports = Company;
+export default Company;
