@@ -44,3 +44,4 @@ const Subscription = sequelize.define('subscription', {
   });
   
   module.exports = Subscription;
+  //
