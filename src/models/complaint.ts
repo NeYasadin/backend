@@ -1,41 +1,41 @@
-import sequelize from "../db/sequelize"
+import sequelize from "../db/sequelize";
 import { DataTypes } from "sequelize";
 
-const Complaint = sequelize.define('complaint', {
+const Complaint = sequelize.define("complaint", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
   },
   solutionRating: {
     type: DataTypes.INTEGER,
-    defaultValue: null
+    defaultValue: null,
   },
   complaintRating: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   companyId: {
     type: DataTypes.INTEGER,
   },
   meToo: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   misleading: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   customerId: {
     type: DataTypes.INTEGER,
   },
   priorityLevel: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   isFinished: {
     type: DataTypes.BOOLEAN,
-    allowNull: false
-  }
+    allowNull: false,
+  },
 });
 
 module.exports = Complaint;

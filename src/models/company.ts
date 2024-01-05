@@ -1,35 +1,34 @@
 import sequelize from "../db/sequelize";
 import { DataTypes } from "sequelize";
 import Sequelize from "sequelize";
-//asdgsd
 
-const Company = sequelize.define('company', {
+const Company = sequelize.define("company", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
-    primaryKey: true
+    primaryKey: true,
   },
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   createdAt: {
     type: Sequelize.DATE,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
   },
   updatedAt: {
     type: Sequelize.DATE,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
   },
   phoneNum: Sequelize.STRING,
   mail: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   description: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   country: {
     type: Sequelize.STRING,
@@ -42,10 +41,8 @@ const Company = sequelize.define('company', {
   },
   sector: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
 });
 
 module.exports = Company;
-
-Company

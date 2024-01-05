@@ -1,6 +1,5 @@
 import sequelize from "../db/sequelize";
 import { DataTypes } from "sequelize";
-//sdgfs
 
 const Customer = sequelize.define("customer", {
   id: {
