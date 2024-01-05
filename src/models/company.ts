@@ -4,43 +4,43 @@ import Sequelize from "sequelize";
 
 const Company = sequelize.define("company", {
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
   name: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   createdAt: {
-    type: Sequelize.DATE,
+    type: DataTypes.DATE,
     defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
   },
   updatedAt: {
-    type: Sequelize.DATE,
+    type: DataTypes.DATE,
     defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
   },
-  phoneNum: Sequelize.STRING,
+  phoneNum: { type: DataTypes.STRING, allowNull: true },
   mail: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   description: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   country: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
   },
   address: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
   },
   employeeNum: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
   },
   sector: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
 });
