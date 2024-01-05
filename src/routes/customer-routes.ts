@@ -3,8 +3,9 @@ import CustomerController from "../controllers/customer-controller";
 
 const router = express.Router();
 
+const customerController = new CustomerController();
+
 router.post("/", (req, res, next) => {
-  const customerController = new CustomerController();
   customerController.createCustomer(req, res, next);
 });
 
