@@ -13,4 +13,8 @@ router.patch("/:id", (req, res, next) => {
   customerController.updateCustomer(req, res, next);
 });
 
+router.delete("/:id", (req, res, next) => {
+  customerController.deleteCustomer(req, res, next);
+});
+
 export default router;

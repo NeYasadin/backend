@@ -10,6 +10,11 @@ class CustomerController {
     await customerService.updateCustomer(req, res, next);
     res.status(200).json({ message: "Customer updated" });
   };
+
+  deleteCustomer = async (req: any, res: any, next: any) => {
+    await customerService.deleteCustomer(req, res, next);
+    res.status(200).json({ message: "Customer deleted" });
+  };
 }
 
 export default CustomerController;
