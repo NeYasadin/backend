@@ -7,14 +7,15 @@ const Complaint = sequelize.define("complaint", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
+    autoIncrement: true,
   },
   solutionRating: {
     type: DataTypes.INTEGER,
-    defaultValue: null,
+    allowNull: true,
   },
   complaintRating: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
   companyId: {
     type: DataTypes.INTEGER,
@@ -25,11 +26,11 @@ const Complaint = sequelize.define("complaint", {
   },
   meToo: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
   misleading: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
   customerId: {
     type: DataTypes.INTEGER,
@@ -44,11 +45,7 @@ const Complaint = sequelize.define("complaint", {
   },
   isFinished: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
-  },
-  solutionIds: {
-    type: DataTypes.ARRAY(DataTypes.INTEGER),
-    allowNull: true,
+    defaultValue: false,
   },
 });
 
