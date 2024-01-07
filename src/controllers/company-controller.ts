@@ -14,6 +14,16 @@ class CompanyController {
     await companyService.deleteCompany(req, res, next);
     res.status(200).json({ message: "Company deleted" });
   };
+  getCompany = async (req: any, res: any, next: any) => {
+    const compaines = await companyService.getCompany(req, res, next);
+    res.status(200).json({ compaines });
+
+  }
+  getCompanyWithAgents = async (req: any, res: any, next: any) => {
+    const companyWithAgents = await companyService.getCompanyWithAgents(req, res, next);
+    res.status(200).json({ companyWithAgents });
+
+  }
 }
 
 export default CompanyController;

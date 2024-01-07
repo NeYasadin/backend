@@ -1,6 +1,8 @@
 import Complaint from '../models/complaint';
 import Company from '../models/company';
 import sequelize from '../db/sequelize';
+import Solution from '../models/solution';
+import Comment from '../models/comment';
 const { Op } = require('sequelize');
 const { QueryTypes } = require('sequelize');
 
@@ -66,7 +68,13 @@ getFilteredComplaints = async (req:any , res:any , next: any) => {
                 model: Company,
                 attributes: ['sector'],
             },
-        ]
+            {
+                model: Solution
+            },
+            {
+                model: Comment
+            }
+        ],
         });
         return complaints;
     } catch (err) {

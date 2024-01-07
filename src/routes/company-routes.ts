@@ -17,4 +17,12 @@ router.delete("/:id", (req, res, next) => {
   companyController.deleteCompany(req, res, next);
 });
 
+router.get("/company-with-agents", (req, res, next) => {
+  companyController.getCompanyWithAgents(req, res, next);
+});
+
+router.get("/", (req, res, next) => {
+  companyController.getCompany(req, res, next);
+});
+
 export default router;

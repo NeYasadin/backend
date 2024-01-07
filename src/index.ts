@@ -9,6 +9,8 @@ import solutionRouter from "./routes/solution-routes";
 import commentRouter from "./routes/comment-routes";
 import Company from "./models/company";
 import Complaint from "./models/complaint";
+import Solution from "./models/solution";
+import Comment from "./models/comment";
 
 const app = express();
 app.use(express.json());
@@ -20,7 +22,10 @@ app.use("/complaint", complaintRouter);
 app.use("/solution", solutionRouter);
 app.use("/comment", commentRouter);
 
+Complaint.hasMany(Solution, {foreignKey: 'complaintId'});
+Complaint.hasMany(Comment, {foreignKey: 'complaintId'});
 Complaint.belongsTo(Company, {foreignKey: 'companyId'});
+
 
 sequelize.sync().then(() => {
   app.listen(3000);
