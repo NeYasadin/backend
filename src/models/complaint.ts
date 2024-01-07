@@ -17,6 +17,10 @@ const Complaint = sequelize.define("complaint", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
   solutionRating: {
     type: DataTypes.INTEGER,
     allowNull: true,

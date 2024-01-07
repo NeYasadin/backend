@@ -17,4 +17,14 @@ router.delete("/:id", (req, res, next) => {
   complaintController.deleteComplaint(req, res, next);
 });
 
+router.get("/count-by-sector", (req, res, next) => {
+  complaintController.getComplaintCountBySector(req, res, next);
+});
+
+router.get("/", (req, res, next) => {
+  complaintController.getComplaint(req, res, next);
+});
+
+
+
 export default router;

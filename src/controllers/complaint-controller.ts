@@ -13,5 +13,13 @@ class ComplaintController {
         await complaintService.deleteComplaint(req, res, next);
         res.status(200).json({ message: "Complaint deleted" });
     }
+    getComplaint = async (req:any, res:any, next:any) => {
+        const complaints = await complaintService.getFilteredComplaints(req, res, next);
+        res.status(200).json({complaints});
+    }
+    getComplaintCountBySector = async (req:any, res:any, next:any) => {
+        const complaints = await complaintService.getComplaintCountBySector(req, res, next);
+        res.status(200).json({complaints});
+    }
 }
 export default ComplaintController;
