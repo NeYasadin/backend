@@ -17,10 +17,6 @@ const Company = sequelize.define("company", {
     type: DataTypes.DATE,
     defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
   },
-  updatedAt: {
-    type: DataTypes.DATE,
-    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-  },
   phoneNum: { type: DataTypes.STRING, allowNull: true },
   mail: {
     type: DataTypes.STRING,
