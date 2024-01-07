@@ -1,4 +1,4 @@
-import { Express, Router } from "express";
+import { Router } from "express";
 import ComplaintController from "../controllers/complaint-controller";
 
 const router = Router();

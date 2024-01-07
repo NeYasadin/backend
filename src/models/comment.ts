@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/sequelize";
-import Customer from "./customer";
+import Complaint from "./complaint";
 
 const Comment = sequelize.define("comment", {
   id: {
@@ -17,11 +17,11 @@ const Comment = sequelize.define("comment", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  customerId: {
+  complaintId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: Customer,
+      model: Complaint,
       key: "id",
     },
   },

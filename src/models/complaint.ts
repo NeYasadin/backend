@@ -9,6 +9,14 @@ const Complaint = sequelize.define("complaint", {
     primaryKey: true,
     autoIncrement: true,
   },
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  content: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   solutionRating: {
     type: DataTypes.INTEGER,
     allowNull: true,
