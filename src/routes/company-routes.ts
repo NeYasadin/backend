@@ -22,7 +22,7 @@ router.get("/company-with-agents", (req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-  companyController.getCompany(req, res, next);
+  companyController.getCompanies(req, res, next);
 });
 
 export default router;

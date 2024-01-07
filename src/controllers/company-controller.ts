@@ -14,16 +14,18 @@ class CompanyController {
     await companyService.deleteCompany(req, res, next);
     res.status(200).json({ message: "Company deleted" });
   };
-  getCompany = async (req: any, res: any, next: any) => {
-    const compaines = await companyService.getCompany(req, res, next);
-    res.status(200).json({ compaines });
-
-  }
+  getCompanies = async (req: any, res: any, next: any) => {
+    const companies = await companyService.getCompanies(req, res, next);
+    res.status(200).json({ companies });
+  };
   getCompanyWithAgents = async (req: any, res: any, next: any) => {
-    const companyWithAgents = await companyService.getCompanyWithAgents(req, res, next);
+    const companyWithAgents = await companyService.getCompanyWithAgents(
+      req,
+      res,
+      next
+    );
     res.status(200).json({ companyWithAgents });
-
-  }
+  };
 }
 
 export default CompanyController;

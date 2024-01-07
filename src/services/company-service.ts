@@ -34,34 +34,30 @@ class CompanyService {
     }
   };
 
-
-  getCompany = async (req: any, res: any, next: any) => {
+  getCompanies = async (req: any, res: any, next: any) => {
     try {
       const companies = await Company.findAll();
       return companies;
-    }  
-    
-    catch (err) {
+    } catch (err) {
       return console.error(err);
     }
-  } 
+  };
 
   getCompanyWithAgents = async (req: any, res: any, next: any) => {
     try {
       let query = `SELECT companies.name AS companyname, company_agents.* 
                    FROM companies  
                    INNER JOIN company_agents ON company_agents.companyId = companies.id`;
-                   
+
       const companyWithAgents = await sequelize.query(query, {
-          type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       });
-          
+
       return companyWithAgents;
-  }
-    catch (err) {
+    } catch (err) {
       return console.error(err);
     }
-  }
+  };
 }
 
 export default CompanyService;
