@@ -1,3 +1,4 @@
+import Company from "../models/company";
 import CompanyAgent from "../models/company-agent";
 
 class CompanyAgentService {
@@ -35,10 +36,28 @@ class CompanyAgentService {
 
   authenticateCompanyAgent = async (req: any, res: any, next: any) => {
     try {
+      if (req.query.mail == null || req.query.password == null) return null;
       return CompanyAgent.findOne({
         where: {
-          mail: req.body.mail,
-          password: req.body.password,
+          mail: req.query.mail,
+          password: req.query.password,
+        },
+        include: [
+          {
+            model: Company,
+          },
+        ],
+      });
+    } catch (err) {
+      return console.error(err);
+    }
+  };
+
+  getCompanyAgent = async (req: any, res: any, next: any) => {
+    try {
+      return CompanyAgent.findOne({
+        where: {
+          id: req.params.id,
         },
       });
     } catch (err) {

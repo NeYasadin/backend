@@ -36,7 +36,7 @@ class SolutionService {
     try {
       return Solution.findAll({
         where: {
-            companyAgentId: req.body.companyAgentId,
+          companyAgentId: req.query.companyAgentId,
         },
       });
     } catch (err) {

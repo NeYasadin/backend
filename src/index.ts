@@ -12,6 +12,7 @@ import Company from "./models/company";
 import Complaint from "./models/complaint";
 import Solution from "./models/solution";
 import Comment from "./models/comment";
+import CompanyAgent from "./models/company-agent";
 
 const app = express();
 app.use(cors());
@@ -26,6 +27,8 @@ app.use("/comment", commentRouter);
 
 Complaint.hasMany(Solution, { foreignKey: "complaintId" });
 Complaint.hasMany(Comment, { foreignKey: "complaintId" });
+Company.hasMany(CompanyAgent, { foreignKey: "companyId" });
+CompanyAgent.belongsTo(Company, { foreignKey: "companyId" });
 Complaint.belongsTo(Company, { foreignKey: "companyId" });
 
 sequelize.sync().then(() => {

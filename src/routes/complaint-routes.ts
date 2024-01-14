@@ -22,9 +22,7 @@ router.get("/count-by-sector", (req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-  complaintController.getComplaint(req, res, next);
+  complaintController.getComplaints(req, res, next);
 });
-
-
 
 export default router;

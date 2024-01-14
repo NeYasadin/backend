@@ -8,7 +8,7 @@ class SubscriptionService {
       return console.error(err);
     }
   };
-  
+
   updateSubscription = async (req: any, res: any, next: any) => {
     try {
       await Subscription.update(req.body, {
@@ -20,7 +20,7 @@ class SubscriptionService {
       return console.error(err);
     }
   };
-  
+
   deleteSubscription = async (req: any, res: any, next: any) => {
     try {
       await Subscription.destroy({
@@ -36,13 +36,13 @@ class SubscriptionService {
     try {
       return Subscription.findAll({
         where: {
-          companyId: req.body.companyId,
+          companyId: req.query.companyId,
         },
       });
     } catch (err) {
       return console.error(err);
     }
   };
-} 
+}
 
 export default SubscriptionService;

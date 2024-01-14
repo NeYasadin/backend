@@ -35,10 +35,11 @@ class CustomerService {
 
   authenticateCustomer = async (req: any, res: any, next: any) => {
     try {
+      if (req.query.mail == null || req.query.password == null) return null;
       return Customer.findOne({
         where: {
-          mail: req.body.mail,
-          password: req.body.password,
+          mail: req.query.mail,
+          password: req.query.password,
         },
       });
     } catch (err) {

@@ -18,13 +18,25 @@ export default class CompanyAgentController {
   };
 
   authenticateCompanyAgent = async (req: any, res: any, next: any) => {
-    const companyAgent = await companyAgentService.authenticateCompanyAgent(req, res, next);
+    const companyAgent = await companyAgentService.authenticateCompanyAgent(
+      req,
+      res,
+      next
+    );
     if (companyAgent == null) {
-      res.status(401).json({ companyAgent: null });
+      res.status(200).json({ companyAgent: null });
       return;
     } else {
       res.status(200).json({ companyAgent: companyAgent });
     }
   };
-}
 
+  getCompanyAgent = async (req: any, res: any, next: any) => {
+    const companyAgent = await companyAgentService.getCompanyAgent(
+      req,
+      res,
+      next
+    );
+    res.status(200).json({ companyAgent });
+  };
+}

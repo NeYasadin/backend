@@ -20,4 +20,8 @@ router.get("/authenticate", (req, res, next) => {
   companyAgentController.authenticateCompanyAgent(req, res, next);
 });
 
+router.get("/:id", (req, res, next) => {
+  companyAgentController.getCompanyAgent(req, res, next);
+});
+
 export default router;

@@ -37,7 +37,7 @@ class CommentService {
 
   async getComments(req: any, res: any, next: any) {
     try {
-      const customerId = req.body.customerId;
+      const customerId = req.query.customerId;
       const comments = await sequelize.query(
         `
         SELECT comm.* FROM customers AS cu, comments AS comm, complaints AS comp
