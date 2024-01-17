@@ -1,24 +1,44 @@
-import SolutionService from '../services/solution-service';
+import SolutionService from "../services/solution-service";
 
 const solutionService = new SolutionService();
 
 class SolutionController {
   createSolution = async (req: any, res: any, next: any) => {
-    await solutionService.createSolution(req, res, next);
-    res.status(201).json({ message: 'Solution created' });
+    try {
+      await solutionService.createSolution(req, res, next);
+      res.status(201).json({ message: "Solution created" });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
   };
   updateSolution = async (req: any, res: any, next: any) => {
-    await solutionService.updateSolution(req, res, next);
-    res.status(200).json({ message: 'Solution updated' });
+    try {
+      await solutionService.updateSolution(req, res, next);
+      res.status(200).json({ message: "Solution updated" });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
   };
 
   deleteSolution = async (req: any, res: any, next: any) => {
-    await solutionService.deleteSolution(req, res, next);
-    res.status(200).json({ message: 'Solution deleted' });
+    try {
+      await solutionService.deleteSolution(req, res, next);
+      res.status(200).json({ message: "Solution deleted" });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
   };
   getSolution = async (req: any, res: any, next: any) => {
-    const solutions = await solutionService.getSolution(req, res, next);
-    res.status(200).json({ solutions: solutions });
+    try {
+      const solution = await solutionService.getSolution(req, res, next);
+      res.status(200).json({ solution });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
   };
 }
 

@@ -8,7 +8,8 @@ class CommentController {
       await commentService.createComment(req, res, next);
       res.status(201).json({ message: "Comment created" });
     } catch (err) {
-      res.status(400).json({ message: "Error creating comment" });
+      console.error(err);
+      res.status(400).json({ message: err });
     }
   };
 
@@ -17,7 +18,8 @@ class CommentController {
       await commentService.updateComment(req, res, next);
       res.status(200).json({ message: "Comment updated" });
     } catch (err) {
-      res.status(400).json({ message: "Error updating comment" });
+      console.error(err);
+      res.status(400).json({ message: err });
     }
   };
 
@@ -26,7 +28,8 @@ class CommentController {
       await commentService.deleteComment(req, res, next);
       res.status(200).json({ message: "Comment deleted" });
     } catch (err) {
-      res.status(400).json({ message: "Error deleting comment" });
+      console.error(err);
+      res.status(400).json({ message: err });
     }
   };
 
@@ -35,7 +38,8 @@ class CommentController {
       const comments = await commentService.getComments(req, res, next);
       res.status(200).json({ comments });
     } catch (err) {
-      res.status(400).json({ message: "Error getting comments" });
+      console.error(err);
+      res.status(400).json({ message: err });
     }
   };
 }

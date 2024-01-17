@@ -5,7 +5,7 @@ class SolutionService {
     try {
       await Solution.create(req.body);
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -17,7 +17,7 @@ class SolutionService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -29,7 +29,7 @@ class SolutionService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
   getSolution = async (req: any, res: any, next: any) => {
@@ -40,7 +40,7 @@ class SolutionService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 }

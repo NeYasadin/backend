@@ -7,7 +7,7 @@ class CompanyService {
     try {
       await Company.create(req.body);
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
   updateCompany = async (req: any, res: any, next: any) => {
@@ -18,7 +18,7 @@ class CompanyService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -30,7 +30,7 @@ class CompanyService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -39,7 +39,7 @@ class CompanyService {
       const companies = await Company.findAll();
       return companies;
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -55,7 +55,7 @@ class CompanyService {
 
       return companyWithAgents;
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 }

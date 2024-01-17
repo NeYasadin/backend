@@ -13,6 +13,7 @@ import Complaint from "./models/complaint";
 import Solution from "./models/solution";
 import Comment from "./models/comment";
 import CompanyAgent from "./models/company-agent";
+import Customer from "./models/customer";
 
 const app = express();
 app.use(cors());
@@ -27,10 +28,23 @@ app.use("/comment", commentRouter);
 
 Complaint.hasMany(Solution, { foreignKey: "complaintId" });
 Complaint.hasMany(Comment, { foreignKey: "complaintId" });
+Customer.hasMany(Complaint, { foreignKey: "customerId" });
+Complaint.belongsTo(Customer, { foreignKey: "customerId" });
 Company.hasMany(CompanyAgent, { foreignKey: "companyId" });
 CompanyAgent.belongsTo(Company, { foreignKey: "companyId" });
 Complaint.belongsTo(Company, { foreignKey: "companyId" });
+Customer.hasMany(Comment, { foreignKey: "customerId" });
+Comment.belongsTo(Customer, { foreignKey: "customerId" });
+CompanyAgent.hasMany(Solution, {
+  foreignKey: "companyAgentId",
+  as: "solutions",
+});
+Solution.belongsTo(CompanyAgent, {
+  foreignKey: "companyAgentId",
+  as: "companyAgent",
+});
 
 sequelize.sync().then(() => {
+  console.info("Listening on port 3000...");
   app.listen(3000);
 });

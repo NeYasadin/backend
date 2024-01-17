@@ -5,7 +5,7 @@ class CustomerService {
     try {
       await Customer.create(req.body);
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -17,7 +17,7 @@ class CustomerService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -29,7 +29,7 @@ class CustomerService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -43,7 +43,7 @@ class CustomerService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 }

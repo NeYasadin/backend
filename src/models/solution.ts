@@ -17,6 +17,10 @@ const Solution = sequelize.define("solution", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  content: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   createdAt: {
     type: DataTypes.DATE,
     allowNull: false,

@@ -3,6 +3,8 @@ import Company from "../models/company";
 import sequelize from "../db/sequelize";
 import Solution from "../models/solution";
 import Comment from "../models/comment";
+import Customer from "../models/customer";
+import CompanyAgent from "../models/company-agent";
 const { Op } = require("sequelize");
 const { QueryTypes } = require("sequelize");
 
@@ -11,7 +13,7 @@ class ComplaintService {
     try {
       await Complaint.create(req.body);
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
   updateComplaint = async (req: any, res: any, next: any) => {
@@ -22,7 +24,7 @@ class ComplaintService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
   deleteComplaint = async (req: any, res: any, next: any) => {
@@ -33,7 +35,7 @@ class ComplaintService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -64,6 +66,7 @@ class ComplaintService {
 
       const complaints = await Complaint.findAll({
         where: whereClause,
+        order: [["createdAt", "ASC"]],
         include: [
           {
             model: Company,
@@ -71,15 +74,29 @@ class ComplaintService {
           },
           {
             model: Solution,
+            include: [
+              {
+                model: CompanyAgent,
+                as: "companyAgent",
+              },
+            ],
           },
           {
             model: Comment,
+            include: [
+              {
+                model: Customer,
+              },
+            ],
+          },
+          {
+            model: Customer,
           },
         ],
       });
       return complaints;
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -96,7 +113,7 @@ class ComplaintService {
 
       return complaintsCountBySector;
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 }

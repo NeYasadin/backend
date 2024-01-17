@@ -5,7 +5,7 @@ class SubscriptionService {
     try {
       await Subscription.create(req.body);
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -17,7 +17,7 @@ class SubscriptionService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -29,7 +29,7 @@ class SubscriptionService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
   getSubscription = async (req: any, res: any, next: any) => {
@@ -40,7 +40,7 @@ class SubscriptionService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 }

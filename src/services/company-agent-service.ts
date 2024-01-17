@@ -6,7 +6,7 @@ class CompanyAgentService {
     try {
       await CompanyAgent.create(req.body);
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -18,7 +18,7 @@ class CompanyAgentService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -30,7 +30,7 @@ class CompanyAgentService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -49,7 +49,7 @@ class CompanyAgentService {
         ],
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 
@@ -61,7 +61,7 @@ class CompanyAgentService {
         },
       });
     } catch (err) {
-      return console.error(err);
+      throw err;
     }
   };
 }
