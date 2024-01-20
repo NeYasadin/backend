@@ -1,3 +1,4 @@
+import sequelize from "sequelize";
 import Company from "../models/company";
 import CompanyAgent from "../models/company-agent";
 
@@ -64,6 +65,31 @@ class CompanyAgentService {
       throw err;
     }
   };
+
+  getActiveCompanyAgents = async (req: any, res: any, next: any) => {
+    try {
+      let query = `
+      SELECT agent.id, COUNT(sol.id) AS total_solutions_solved
+      FROM company_agents as agent
+      INNER JOIN solutions as sol ON agent.id = sol.companyAgentId
+      GROUP BY agent.id, agent.name
+      ORDER BY total_solutions_solved DESC
+      LIMIT 5;
+    `;
+    /*const companyAgents = await sequelize.query(query, { type: sequelize.QueryTypes.SELECT });
+      return companyAgents;*/
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 export default CompanyAgentService;
+
+
+/* SELECT agent.id, COUNT(sol.id) AS total_solutions_solved
+FROM neyasadin.company_agents as agent
+INNER JOIN neyasadin.solutions as sol ON agent.id = sol.companyAgentId
+GROUP BY agent.id, agent.name
+ORDER BY total_solutions_solved DESC
+LIMIT 5; */
