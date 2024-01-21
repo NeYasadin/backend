@@ -1,6 +1,9 @@
-import sequelize from "sequelize";
+import { Sequelize, QueryTypes } from "sequelize";
+import sequelize from "../db/sequelize";
 import Company from "../models/company";
 import CompanyAgent from "../models/company-agent";
+
+
 
 class CompanyAgentService {
   createCompanyAgent = async (req: any, res: any, next: any) => {
@@ -76,8 +79,8 @@ class CompanyAgentService {
       ORDER BY total_solutions_solved DESC
       LIMIT 5;
     `;
-    /*const companyAgents = await sequelize.query(query, { type: sequelize.QueryTypes.SELECT });
-      return companyAgents;*/
+    const activeCompanyAgents = await sequelize.query(query, { type: QueryTypes.SELECT });
+      return activeCompanyAgents;
     } catch (err) {
       throw err;
     }
@@ -86,6 +89,8 @@ class CompanyAgentService {
 
 export default CompanyAgentService;
 
+
+//SQLDEKİ VERSİYON --> YUKARIDA neyasadin. kısmı yazmıyor 
 
 /* SELECT agent.id, COUNT(sol.id) AS total_solutions_solved
 FROM neyasadin.company_agents as agent

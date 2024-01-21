@@ -1,3 +1,4 @@
+import { get } from "http";
 import CompanyAgentService from "../services/company-agent-service";
 const companyAgentService = new CompanyAgentService();
 export default class CompanyAgentController {
@@ -63,4 +64,16 @@ export default class CompanyAgentController {
       res.status(400).json({ message: err });
     }
   };
+
+  getActiveCompanyAgents = async (req: any, res: any, next: any) => {
+    try {
+      const activeCompanyAgents = await 
+      companyAgentService.getActiveCompanyAgents(req, res, next);
+      res.status(200).json({ activeCompanyAgents });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  };
+    
 }
