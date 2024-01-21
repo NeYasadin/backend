@@ -64,6 +64,19 @@ class CompanyController {
       res.status(400).json({ message: err });
     }
   }
+  getHighestRatedCompanies = async (req: any, res: any, next: any) => {
+    try {
+      const highestRatedCompanies = await companyService.getHighestRatedCompanies(
+        req,
+        res,
+        next
+      );
+      res.status(200).json({ highestRatedCompanies });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  }
 }
 
 export default CompanyController;

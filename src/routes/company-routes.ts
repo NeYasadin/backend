@@ -25,8 +25,12 @@ router.get("/", (req, res, next) => {
   companyController.getCompanies(req, res, next);
 });
 
-router.get("/:active-company", (req, res, next) => {
+router.get("/active-company", (req, res, next) => {
   companyController.getActiveCompanies(req, res, next);
+});
+
+router.get("/highest-rated-company", (req, res, next) => {
+  companyController.getHighestRatedCompanies(req, res, next);
 });
 
 export default router;

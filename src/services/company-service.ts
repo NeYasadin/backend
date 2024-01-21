@@ -77,11 +77,32 @@ class CompanyService {
       throw err;
     }
   }
+  //curl -X GET -H "Content-Type: application/json" http://localhost:3000/company/highest-rated-company
+  
+  getHighestRatedCompanies = async (req: any, res: any, next: any) => {
+    try {
+      let query = `
+      SELECT c.id AS company_id, c.name AS company_name, AVG(cm.solutionRating) AS avg_solution_rating
+      FROM neyasadin.companies c
+      JOIN neyasadin.subscriptions s ON c.id = s.companyId
+      LEFT JOIN neyasadin.complaints cm ON c.id = cm.companyId
+      GROUP BY c.id, c.name
+      ORDER BY avg_solution_rating DESC
+      LIMIT 5;
+    `;
+      const highestRatedCompanies = await sequelize.query(query, {
+        type: QueryTypes.SELECT,
+      });
+      return highestRatedCompanies;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 export default CompanyService;
 
-/* OTHER VERSION OF THE QUERY
+/* OTHER VERSION OF THE QUERY ACTIVE COMPANIES
 
 SELECT c.id AS company_id, c.name AS company_name, COUNT(s.id) AS total_solutions_solved
 FROM neyasadin.companies c
@@ -90,3 +111,15 @@ JOIN neyasadin.solutions s ON ca.id = s.companyAgentId
 GROUP BY c.id, c.name
 ORDER BY total_solutions_solved DESC
 LIMIT 5;*/
+
+//******************************************************************************************* */
+
+/* OTHER VERSION OF THE QUERY HIGHEST RATED COMPANIES
+SELECT c.id AS company_id, c.name AS company_name, AVG(coalesce(cm.solutionRating, 0)) AS avg_solution_rating
+FROM companies c
+JOIN subscriptions s ON c.id = s.companyId
+LEFT JOIN complaints cm ON c.id = cm.companyId
+GROUP BY c.id, c.name
+ORDER BY avg_solution_rating DESC
+LIMIT 5;
+*/
