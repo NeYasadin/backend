@@ -60,6 +60,11 @@ class CompanyAgentService {
         where: {
           id: req.params.id,
         },
+        include: [
+          {
+            model: Company,
+          },
+        ],
       });
     } catch (err) {
       throw err;
