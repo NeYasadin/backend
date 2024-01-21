@@ -74,32 +74,7 @@ class CompanyAgentService {
     }
   };
 
-  getActiveCompanyAgents = async (req: any, res: any, next: any) => {
-    try {
-      let query = `
-      SELECT agent.id, COUNT(sol.id) AS total_solutions_solved
-      FROM company_agents as agent
-      INNER JOIN solutions as sol ON agent.id = sol.companyAgentId
-      GROUP BY agent.id, agent.name
-      ORDER BY total_solutions_solved DESC
-      LIMIT 5;
-    `;
-    const activeCompanyAgents = await sequelize.query(query, { type: QueryTypes.SELECT });
-      return activeCompanyAgents;
-    } catch (err) {
-      throw err;
-    }
-  }
+  
 }
 
 export default CompanyAgentService;
-
-
-//SQLDEKİ VERSİYON --> YUKARIDA neyasadin. kısmı yazmıyor 
-
-/* SELECT agent.id, COUNT(sol.id) AS total_solutions_solved
-FROM neyasadin.company_agents as agent
-INNER JOIN neyasadin.solutions as sol ON agent.id = sol.companyAgentId
-GROUP BY agent.id, agent.name
-ORDER BY total_solutions_solved DESC
-LIMIT 5; */

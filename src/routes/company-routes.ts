@@ -33,4 +33,8 @@ router.get("/highest-rated-company", (req, res, next) => {
   companyController.getHighestRatedCompanies(req, res, next);
 });
 
+router.get("/active-company-agents", (req, res, next) => {
+  companyController.getActiveCompanyAgents(req, res, next);
+});
+
 export default router;

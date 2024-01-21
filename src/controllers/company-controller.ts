@@ -77,6 +77,19 @@ class CompanyController {
       res.status(400).json({ message: err });
     }
   }
+  getActiveCompanyAgents = async (req: any, res: any, next: any) => {  
+    try {
+      const activeCompanyAgents = await companyService.getActiveCompanyAgents(
+        req,
+        res,
+        next
+      );
+      res.status(200).json({ activeCompanyAgents });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  } 
 }
 
 export default CompanyController;

@@ -24,8 +24,4 @@ router.get("/:id", (req, res, next) => {
   companyAgentController.getCompanyAgent(req, res, next);
 });
 
-router.get("/active-company-agents", (req, res, next) => {
-  companyAgentController.getActiveCompanyAgents(req, res, next);
-});
-
 export default router;

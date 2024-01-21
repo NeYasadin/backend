@@ -78,7 +78,7 @@ class CompanyService {
     }
   }
   //curl -X GET -H "Content-Type: application/json" http://localhost:3000/company/highest-rated-company
-  
+
   getHighestRatedCompanies = async (req: any, res: any, next: any) => {
     try {
       let query = `
@@ -94,6 +94,26 @@ class CompanyService {
         type: QueryTypes.SELECT,
       });
       return highestRatedCompanies;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  //to see the result:  curl -X GET -H "Content-Type: application/json" http://localhost:3000/company/active-company-agents  
+  getActiveCompanyAgents = async (req: any, res: any, next: any) => {
+    try {
+      let query = `
+      SELECT agent.name, agent.id, COUNT(sol.id) AS total_solutions_solved
+      FROM neyasadin.company_agents as agent
+      INNER JOIN neyasadin.solutions as sol ON agent.id = sol.companyAgentId
+      GROUP BY agent.id, agent.name
+      ORDER BY total_solutions_solved DESC
+      LIMIT 5;
+    `;
+      const activeCompanyAgents = await sequelize.query(query, {
+        type: QueryTypes.SELECT,
+      });
+      return activeCompanyAgents;
     } catch (err) {
       throw err;
     }
@@ -123,3 +143,4 @@ GROUP BY c.id, c.name
 ORDER BY avg_solution_rating DESC
 LIMIT 5;
 */
+
