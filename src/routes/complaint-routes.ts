@@ -25,4 +25,8 @@ router.get("/", (req, res, next) => {
   complaintController.getComplaints(req, res, next);
 });
 
+router.get("/me-too-customer", (req, res, next) => {
+  complaintController.getMeTooCustomers(req, res, next);
+});
+
 export default router;

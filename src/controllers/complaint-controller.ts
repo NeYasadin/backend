@@ -58,5 +58,18 @@ class ComplaintController {
       res.status(400).json({ message: err });
     }
   };
+  getMeTooCustomers = async (req: any, res: any, next: any) => {
+    try {
+      const complaints = await complaintService.getMeTooCountByCustomer(
+        req,
+        res,
+        next
+      );
+      res.status(200).json({ complaints });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  }
 }
 export default ComplaintController;

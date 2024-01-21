@@ -116,5 +116,26 @@ class ComplaintService {
       throw err;
     }
   };
+  
+  //to see the result:
+  //curl -X GET -H "Content-Type: application/json" http://localhost:3000/complaint/me-too-customer
+  getMeTooCountByCustomer = async (req: any, res: any, next: any) => {
+    try {
+      let query = `SELECT customers.id, customers.name, SUM(complaints.meToo) AS meTooCount
+      FROM neyasadin.customers
+      JOIN neyasadin.complaints ON customers.id = complaints.customerId
+      GROUP BY customers.id, customers.name
+      ORDER BY meTooCount DESC
+      LIMIT 5;`;
+
+      const meTooCountByCustomer = await sequelize.query(query, {
+        type: QueryTypes.SELECT,
+      });
+
+      return meTooCountByCustomer;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 export default ComplaintService;

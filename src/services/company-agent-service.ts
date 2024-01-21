@@ -68,7 +68,7 @@ class CompanyAgentService {
             model: Company,
           },
         ],
-      });
+      }); 
     } catch (err) {
       throw err;
     }
