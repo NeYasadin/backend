@@ -21,4 +21,8 @@ router.get("/authenticate", (req, res, next) => {
   customerController.authenticateCustomer(req, res, next);
 });
 
+router.get("/:id", (req, res, next) => {
+  customerController.getCustomer(req, res, next);
+});
+
 export default router;

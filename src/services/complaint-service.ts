@@ -17,6 +17,7 @@ class ComplaintService {
     }
   };
   updateComplaint = async (req: any, res: any, next: any) => {
+
     try {
       await Complaint.update(req.body, {
         where: {
@@ -27,6 +28,29 @@ class ComplaintService {
       throw err;
     }
   };
+
+  increaseMeToo = async (req: any, res: any, next: any) => {
+    try {
+      const complaint = await Complaint.findOne({
+        where: {
+          id: req.params.id,
+        },
+      });
+      if (complaint) {
+
+        await Complaint.increment('meToo', {
+          by: 1,
+          where: {
+            id: req.params.id,
+          },
+        });
+      }
+    } catch (err) {
+      next(err);
+    }
+  };
+  
+
   deleteComplaint = async (req: any, res: any, next: any) => {
     try {
       await Complaint.destroy({
@@ -62,6 +86,10 @@ class ComplaintService {
 
       if (req.query.companyId) {
         whereClause.companyId = req.query.companyId;
+      }
+
+      if (req.query.customerId) {
+        whereClause.customerId = req.query.customerId;
       }
 
       const complaints = await Complaint.findAll({
@@ -116,7 +144,6 @@ class ComplaintService {
       throw err;
     }
   };
-  
   //to see the result:
   //curl -X GET -H "Content-Type: application/json" http://localhost:3000/complaint/me-too-customer
   getMeTooCountByCustomer = async (req: any, res: any, next: any) => {
@@ -131,6 +158,8 @@ class ComplaintService {
       const meTooCountByCustomer = await sequelize.query(query, {
         type: QueryTypes.SELECT,
       });
+
+      console.log(meTooCountByCustomer);
 
       return meTooCountByCustomer;
     } catch (err) {

@@ -46,6 +46,18 @@ class CustomerService {
       throw err;
     }
   };
+  getCustomer = async (req: any, res: any, next: any) => {
+    try {
+      const customer = await Customer.findOne({
+        where: {
+          id: req.params.id,
+        },
+      });
+      return customer;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 export default CustomerService;

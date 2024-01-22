@@ -49,6 +49,15 @@ class CustomerController {
       res.status(400).json({ message: err });
     }
   };
+  getCustomer = async (req: any, res: any, next: any) => {
+    try {
+      const customer = await customerService.getCustomer(req, res, next);
+      res.status(200).json({ customer });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  };
 }
 
 export default CustomerController;

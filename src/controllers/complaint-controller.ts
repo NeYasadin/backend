@@ -20,6 +20,15 @@ class ComplaintController {
       res.status(400).json({ message: err });
     }
   };
+  increaseMeToo = async (req: any, res: any, next: any) => {
+    try {
+      await complaintService.increaseMeToo(req, res, next);
+      res.status(200).json({ message: "MeToo increased" });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  }
 
   deleteComplaint = async (req: any, res: any, next: any) => {
     try {

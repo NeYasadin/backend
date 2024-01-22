@@ -38,7 +38,7 @@ const Complaint = sequelize.define("complaint", {
   },
   meToo: {
     type: DataTypes.INTEGER,
-    allowNull: true,
+    defaultValue: 0,
   },
   misleading: {
     type: DataTypes.INTEGER,
