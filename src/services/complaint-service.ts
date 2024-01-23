@@ -166,5 +166,54 @@ class ComplaintService {
       throw err;
     }
   }
+
+  getHighestPriorityLevel = async (req: any, res: any, next: any) => {
+    try {
+      let query = `SELECT
+      c.id AS companyId,
+      c.name AS companyName,
+      AVG(comp.priorityLevel) AS avgPriorityLevel
+  FROM
+      neyasadin.companies c, neyasadin.complaints comp
+  
+  WHERE c.id = comp.companyId
+
+  GROUP BY
+      c.id, c.name
+  ORDER BY
+      avgPriorityLevel DESC
+  LIMIT 5;`;
+
+      const complaintsCountBySector = await sequelize.query(query, {
+        type: QueryTypes.SELECT,
+      });
+
+      return complaintsCountBySector;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 export default ComplaintService;
+
+
+/* `SELECT
+      c.id AS companyId,
+      c.name AS companyName,
+      AVG(comp.priorityLevel) AS avgPriorityLevel
+  FROM
+      neyasadin.companies c
+  
+  JOIN neyasadin.complaints comp  on c.id = comp.companyId
+  
+  WHERE               
+      EXISTS (  
+          SELECT *
+          FROM neyasadin.complaints co
+          WHERE co.companyId = c.id
+      ) 
+  GROUP BY
+      c.id, c.name
+  ORDER BY
+      avgPriorityLevel DESC
+  LIMIT 5;` */

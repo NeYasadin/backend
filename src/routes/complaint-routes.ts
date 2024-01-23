@@ -35,4 +35,8 @@ router.get("/", (req, res, next) => {
   complaintController.getComplaints(req, res, next);
 });
 
+router.get("/highest-pri-level", (req, res, next) => {
+  complaintController.getHighestPriorityLevel(req, res, next);
+});
+  
 export default router;
