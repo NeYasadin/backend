@@ -20,11 +20,6 @@ router.delete("/:id", (req, res, next) => {
 router.get("/company-with-agents", (req, res, next) => {
   companyController.getCompanyWithAgents(req, res, next);
 });
-
-router.get("/", (req, res, next) => {
-  companyController.getCompanies(req, res, next);
-});
-
 router.get("/active-company", (req, res, next) => {
   companyController.getActiveCompanies(req, res, next);
 });
@@ -36,5 +31,11 @@ router.get("/highest-rated-company", (req, res, next) => {
 router.get("/active-company-agents", (req, res, next) => {
   companyController.getActiveCompanyAgents(req, res, next);
 });
+
+
+router.get("/", (req, res, next) => {
+  companyController.getCompanies(req, res, next);
+});
+
 
 export default router;

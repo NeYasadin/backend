@@ -14,6 +14,9 @@ router.patch("/:id", (req,res,next) => {
 router.delete("/:id", (req,res,next) => {
     solutionController.deleteSolution(req,res,next);
 });
+router.get("/solution-with-complaint", (req,res,next) => {
+    solutionController.getSolutionWithComplaint(req,res,next);
+});
 router.get("/", (req,res,next) => {
     solutionController.getSolution(req,res,next);
 });

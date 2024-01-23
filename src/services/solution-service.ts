@@ -43,6 +43,18 @@ class SolutionService {
       throw err;
     }
   };
+  getSolutionWithComplaint = async (req: any, res: any, next: any) => {
+    try {
+      const sol = Solution.findAll({
+        where: {
+          complaintId: req.query.complaintId,
+        },
+      });
+      return sol;
+    } catch (err) {
+      throw err;
+    }
+  };
 }
 
 export default SolutionService;

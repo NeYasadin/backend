@@ -49,6 +49,41 @@ class ComplaintService {
       next(err);
     }
   };
+
+  updateSolutionRating = async (req: any, res: any, next: any) => {
+    console.log(req.body);
+    try {
+      await Complaint.update(req.body, {
+        where: {
+          id: req.params.id,
+        },
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  increaseMisleading = async (req: any, res: any, next: any) => {
+    console.log("increaseMisleading");
+    try {
+      const complaint = await Complaint.findOne({
+        where: {
+          id: req.params.id,
+        },
+      });
+      if (complaint) {
+
+        await Complaint.increment('misleading', {
+          by: 1,
+          where: {
+            id: req.params.id,
+          },
+        });
+      }
+    } catch (err) {
+      next(err);
+    }
+  };
   
 
   deleteComplaint = async (req: any, res: any, next: any) => {
@@ -159,7 +194,6 @@ class ComplaintService {
         type: QueryTypes.SELECT,
       });
 
-      console.log(meTooCountByCustomer);
 
       return meTooCountByCustomer;
     } catch (err) {

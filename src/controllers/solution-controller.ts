@@ -40,6 +40,19 @@ class SolutionController {
       res.status(400).json({ message: err });
     }
   };
+  getSolutionWithComplaint = async (req: any, res: any, next: any) => {
+    try {
+      const solutionWithComplaint = await solutionService.getSolutionWithComplaint(
+        req,
+        res,
+        next
+      );
+      res.status(200).json({ solutionWithComplaint });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  };
 }
 
 export default SolutionController;

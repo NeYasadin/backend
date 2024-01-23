@@ -23,11 +23,7 @@ const Complaint = sequelize.define("complaint", {
   },
   solutionRating: {
     type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  complaintRating: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+    defaultValue: 0,
   },
   companyId: {
     type: DataTypes.INTEGER,
@@ -42,7 +38,7 @@ const Complaint = sequelize.define("complaint", {
   },
   misleading: {
     type: DataTypes.INTEGER,
-    allowNull: true,
+    defaultValue: 0,
   },
   customerId: {
     type: DataTypes.INTEGER,

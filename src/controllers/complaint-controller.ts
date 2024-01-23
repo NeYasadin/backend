@@ -29,6 +29,25 @@ class ComplaintController {
       res.status(400).json({ message: err });
     }
   }
+  updateSolutionRating = async (req: any, res: any, next: any) => {
+    try {
+      await complaintService.updateSolutionRating(req, res, next);
+      res.status(200).json({ message: "Solution rating updated" });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  }
+
+  increaseMisleading = async (req: any, res: any, next: any) => {
+    try {
+      await complaintService.increaseMisleading(req, res, next);
+      res.status(200).json({ message: "Misleading increased" });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  }
 
   deleteComplaint = async (req: any, res: any, next: any) => {
     try {
