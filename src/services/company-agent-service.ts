@@ -74,6 +74,24 @@ class CompanyAgentService {
     }
   };
 
+  getCompanyByAgentId = async (req: any) => {
+    try {
+      let agentId = req.query.id;
+        let query = `
+            SELECT companies.* 
+            FROM company_agents
+            INNER JOIN companies ON company_agents.companyId = companies.id
+            WHERE company_agents.id = ${agentId}`;
+
+        const result = await sequelize.query(query, { type: QueryTypes.SELECT });
+
+        return result;
+    } catch (err) {
+        throw err;
+    }
+};
+
+
   
 }
 

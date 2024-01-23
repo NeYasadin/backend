@@ -65,5 +65,15 @@ export default class CompanyAgentController {
     }
   };
 
+  getCompanyByAgentId = async (req: any, res: any, next: any) => {
+    try {
+      const companyInfo = await companyAgentService.getCompanyByAgentId(req);
+      res.status(200).json({ company: companyInfo });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  };
+
  
 }
