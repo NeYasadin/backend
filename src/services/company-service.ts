@@ -166,17 +166,21 @@ class CompanyService {
       let query = `
       SELECT DISTINCT
           ca.id AS companyAgentId,
-          ca.name AS companyAgentName
+          ca.name AS companyAgentName,
+          co.name AS companyName
       FROM
           neyasadin.company_agents ca
       JOIN
           neyasadin.solutions s ON ca.id = s.companyAgentId
       JOIN
           neyasadin.complaints c ON s.complaintId = c.id AND ca.companyId = c.companyId
+      JOIN
+          neyasadin.companies co ON ca.companyId = co.id
       GROUP BY
           ca.id, ca.name
       HAVING
-          COUNT(DISTINCT c.id) = COUNT(DISTINCT s.complaintId);`;
+          COUNT(DISTINCT c.id) = COUNT(DISTINCT s.complaintId)
+      LIMIT 20;`;
 
       const complaintsCountBySector = await sequelize.query(query, {
         type: QueryTypes.SELECT,
