@@ -63,21 +63,18 @@ class CompanyController {
       console.error(err);
       res.status(400).json({ message: err });
     }
-  }
+  };
   getHighestRatedCompanies = async (req: any, res: any, next: any) => {
     try {
-      const highestRatedCompanies = await companyService.getHighestRatedCompanies(
-        req,
-        res,
-        next
-      );
+      const highestRatedCompanies =
+        await companyService.getHighestRatedCompanies(req, res, next);
       res.status(200).json({ highestRatedCompanies });
     } catch (err) {
       console.error(err);
       res.status(400).json({ message: err });
     }
-  }
-  getActiveCompanyAgents = async (req: any, res: any, next: any) => {  
+  };
+  getActiveCompanyAgents = async (req: any, res: any, next: any) => {
     try {
       const activeCompanyAgents = await companyService.getActiveCompanyAgents(
         req,
@@ -89,33 +86,27 @@ class CompanyController {
       console.error(err);
       res.status(400).json({ message: err });
     }
-  } 
+  };
   getMostSolutionsWrittenByCompany = async (req: any, res: any, next: any) => {
     try {
-      const mostSolutionsWrittenByCompany = await companyService.getMostSolutionsWrittenByCompany(
-        req,
-        res,
-        next
-      );
+      const mostSolutionsWrittenByCompany =
+        await companyService.getMostSolutionsWrittenByCompany(req, res, next);
       res.status(200).json({ mostSolutionsWrittenByCompany });
     } catch (err) {
       console.error(err);
       res.status(400).json({ message: err });
     }
-  }
+  };
   getAgentResolvedAllComplaints = async (req: any, res: any, next: any) => {
     try {
-      const companiesResolvedAllComplaints = await companyService.getAgentResolvedAllComplaints(
-        req,
-        res,
-        next
-      );
+      const companiesResolvedAllComplaints =
+        await companyService.getAgentResolvedAllComplaints(req, res, next);
       res.status(200).json({ companiesResolvedAllComplaints });
     } catch (err) {
       console.error(err);
       res.status(400).json({ message: err });
     }
-  }
+  };
 }
 
 export default CompanyController;
