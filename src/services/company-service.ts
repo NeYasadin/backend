@@ -118,6 +118,34 @@ class CompanyService {
       throw err;
     }
   }
+  
+  //Table of the companies that wrote the most solutions from past to present
+  getMostSolutionsWrittenByCompany = async (req: any, res: any, next: any) => {
+    try {
+      let query = `SELECT
+      c.id AS companyId,
+      c.name AS companyName,
+      COUNT(s.id) AS solutionCount
+  FROM
+      neyasadin.companies c
+  LEFT JOIN
+      neyasadin.company_agents ca ON c.id = ca.companyId
+  LEFT JOIN
+      neyasadin.solutions s ON ca.id = s.companyAgentId
+  GROUP BY
+      c.id, c.name
+  ORDER BY
+      solutionCount DESC;`;
+
+      const complaintsCountBySector = await sequelize.query(query, {
+        type: QueryTypes.SELECT,
+      });
+
+      return complaintsCountBySector;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 export default CompanyService;

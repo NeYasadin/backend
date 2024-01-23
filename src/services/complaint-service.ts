@@ -167,6 +167,7 @@ class ComplaintService {
     }
   }
 
+  //Among all the companies that have received complaints to date, the 5 companies that have achieved the highest priority level average
   getHighestPriorityLevel = async (req: any, res: any, next: any) => {
     try {
       let query = `SELECT

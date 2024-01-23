@@ -90,6 +90,19 @@ class CompanyController {
       res.status(400).json({ message: err });
     }
   } 
+  getMostSolutionsWrittenByCompany = async (req: any, res: any, next: any) => {
+    try {
+      const mostSolutionsWrittenByCompany = await companyService.getMostSolutionsWrittenByCompany(
+        req,
+        res,
+        next
+      );
+      res.status(200).json({ mostSolutionsWrittenByCompany });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  }
 }
 
 export default CompanyController;
