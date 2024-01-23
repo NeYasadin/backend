@@ -58,16 +58,19 @@ class CompanyService {
       throw err;
     }
   };
-  /*to see most active company : curl -X GET -H "Content-Type: application/json" http://localhost:3000/company/active-company*/ 
+  /*to see most active company : curl -X GET -H "Content-Type: application/json" http://localhost:3000/company/active-company*/
   getActiveCompanies = async (req: any, res: any, next: any) => {
     try {
       let query = `
       SELECT c.id AS company_id, c.name AS company_name, COUNT(s.id) AS total_solutions_solved
-      FROM neyasadin.companies c, neyasadin.company_agents ca, neyasadin.solutions s
-      WHERE c.id = ca.companyId AND ca.id = s.companyAgentId
+      FROM neyasadin.companies c
+      JOIN neyasadin.company_agents ca ON c.id = ca.companyId
+      JOIN neyasadin.solutions s ON ca.id = s.companyAgentId
+      WHERE s.createdAt >= CURRENT_DATE - INTERVAL 30 DAY
       GROUP BY c.id, c.name
       ORDER BY total_solutions_solved DESC
       LIMIT 5;
+
     `;
       const activeCompanies = await sequelize.query(query, {
         type: QueryTypes.SELECT,
@@ -76,8 +79,9 @@ class CompanyService {
     } catch (err) {
       throw err;
     }
-  }
+  };
   //curl -X GET -H "Content-Type: application/json" http://localhost:3000/company/highest-rated-company
+  // highest rated company is the company has subscription and company has more than 5 solutions.
 
   getHighestRatedCompanies = async (req: any, res: any, next: any) => {
     try {
@@ -86,9 +90,16 @@ class CompanyService {
       FROM neyasadin.companies c
       JOIN neyasadin.subscriptions s ON c.id = s.companyId
       LEFT JOIN neyasadin.complaints cm ON c.id = cm.companyId
+      JOIN neyasadin.company_agents ca ON c.id = ca.companyId
+      WHERE ca.id IN (
+         SELECT companyAgentId 
+         FROM neyasadin.solutions
+         GROUP BY companyAgentId
+        HAVING COUNT(id) > 5)
       GROUP BY c.id, c.name
       ORDER BY avg_solution_rating DESC
       LIMIT 5;
+
     `;
       const highestRatedCompanies = await sequelize.query(query, {
         type: QueryTypes.SELECT,
@@ -97,9 +108,9 @@ class CompanyService {
     } catch (err) {
       throw err;
     }
-  }
+  };
 
-  //to see the result:  curl -X GET -H "Content-Type: application/json" http://localhost:3000/company/active-company-agents  
+  //to see the result:  curl -X GET -H "Content-Type: application/json" http://localhost:3000/company/active-company-agents
   getActiveCompanyAgents = async (req: any, res: any, next: any) => {
     try {
       let query = `
@@ -117,8 +128,8 @@ class CompanyService {
     } catch (err) {
       throw err;
     }
-  }
-  
+  };
+
   //Table of the companies that wrote the most solutions from past to present
   getMostSolutionsWrittenByCompany = async (req: any, res: any, next: any) => {
     try {
@@ -136,7 +147,8 @@ class CompanyService {
       GROUP BY
           c.id, c.name
       ORDER BY
-          solutionCount DESC;`;
+          solutionCount DESC
+      LIMIT 5;`;
 
       const complaintsCountBySector = await sequelize.query(query, {
         type: QueryTypes.SELECT,
@@ -146,7 +158,7 @@ class CompanyService {
     } catch (err) {
       throw err;
     }
-  }
+  };
 
   //Names of company agents who have provided solutions to all complaints of their own company.
   getAgentResolvedAllComplaints = async (req: any, res: any, next: any) => {
@@ -174,7 +186,7 @@ class CompanyService {
     } catch (err) {
       throw err;
     }
-  }
+  };
 }
 
 export default CompanyService;
@@ -200,4 +212,3 @@ GROUP BY c.id, c.name
 ORDER BY avg_solution_rating DESC
 LIMIT 5;
 */
-
