@@ -40,5 +40,8 @@ router.get("/active-company-agents", (req, res, next) => {
 router.get("/most-solutions", (req, res, next) => {
   companyController.getMostSolutionsWrittenByCompany(req, res, next);
 });
+router.get("/resolved-all-complaints", (req, res, next) => {
+  companyController.getAgentResolvedAllComplaints(req, res, next);
+});
 
 export default router;

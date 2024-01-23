@@ -103,6 +103,19 @@ class CompanyController {
       res.status(400).json({ message: err });
     }
   }
+  getAgentResolvedAllComplaints = async (req: any, res: any, next: any) => {
+    try {
+      const companiesResolvedAllComplaints = await companyService.getAgentResolvedAllComplaints(
+        req,
+        res,
+        next
+      );
+      res.status(200).json({ companiesResolvedAllComplaints });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ message: err });
+    }
+  }
 }
 
 export default CompanyController;
