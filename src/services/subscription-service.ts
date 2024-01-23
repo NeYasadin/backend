@@ -34,11 +34,12 @@ class SubscriptionService {
   };
   getSubscription = async (req: any, res: any, next: any) => {
     try {
-      return Subscription.findAll({
+      const result = await Subscription.findAll({
         where: {
           companyId: req.query.companyId,
         },
       });
+      return result;
     } catch (err) {
       throw err;
     }

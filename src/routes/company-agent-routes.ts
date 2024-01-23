@@ -17,7 +17,6 @@ router.delete("/:id", (req, res, next) => {
 });
 
 router.get("/company", (req, res, next) => {
-  console.log("company agent routes");
   companyAgentController.getCompanyByAgentId(req, res, next);
 });
 
@@ -28,6 +27,5 @@ router.get("/authenticate", (req, res, next) => {
 router.get("/:id", (req, res, next) => {
   companyAgentController.getCompanyAgent(req, res, next);
 });
-
 
 export default router;
