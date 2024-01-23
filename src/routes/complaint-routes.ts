@@ -10,7 +10,7 @@ router.post("/", (req, res, next) => {
 });
 
 router.patch("/:id", (req, res, next) => {
-  if(req.body.increaseMeToo) {
+  if (req.body.increaseMeToo) {
     complaintController.increaseMeToo(req, res, next);
   } else {
     complaintController.updateComplaint(req, res, next);
@@ -26,12 +26,10 @@ router.get("/count-by-sector", (req, res, next) => {
 });
 
 router.get("/me-too-customer", (req, res, next) => {
-  console.log("girdin mi buraya");
   complaintController.getMeTooCustomers(req, res, next);
 });
 
 router.get("/", (req, res, next) => {
-  console.log("zzzzzzz");
   complaintController.getComplaints(req, res, next);
 });
 
