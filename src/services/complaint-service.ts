@@ -17,7 +17,6 @@ class ComplaintService {
     }
   };
   updateComplaint = async (req: any, res: any, next: any) => {
-
     try {
       await Complaint.update(req.body, {
         where: {
@@ -37,8 +36,7 @@ class ComplaintService {
         },
       });
       if (complaint) {
-
-        await Complaint.increment('meToo', {
+        await Complaint.increment("meToo", {
           by: 1,
           where: {
             id: req.params.id,
@@ -61,7 +59,7 @@ class ComplaintService {
     } catch (err) {
       throw err;
     }
-  }
+  };
 
   increaseMisleading = async (req: any, res: any, next: any) => {
     console.log("increaseMisleading");
@@ -72,8 +70,7 @@ class ComplaintService {
         },
       });
       if (complaint) {
-
-        await Complaint.increment('misleading', {
+        await Complaint.increment("misleading", {
           by: 1,
           where: {
             id: req.params.id,
@@ -84,7 +81,6 @@ class ComplaintService {
       next(err);
     }
   };
-  
 
   deleteComplaint = async (req: any, res: any, next: any) => {
     try {
@@ -129,7 +125,7 @@ class ComplaintService {
 
       const complaints = await Complaint.findAll({
         where: whereClause,
-        order: [["createdAt", "ASC"]],
+        order: [["createdAt", "DESC"]],
         include: [
           {
             model: Company,
@@ -194,12 +190,11 @@ class ComplaintService {
         type: QueryTypes.SELECT,
       });
 
-
       return meTooCountByCustomer;
     } catch (err) {
       throw err;
     }
-  }
+  };
 
   //Among all the companies that have received complaints to date, the 5 companies that have achieved the highest priority level average
   getHighestPriorityLevel = async (req: any, res: any, next: any) => {
@@ -227,10 +222,9 @@ class ComplaintService {
     } catch (err) {
       throw err;
     }
-  }
+  };
 }
 export default ComplaintService;
-
 
 /* `SELECT
       c.id AS companyId,
