@@ -28,7 +28,7 @@ class ComplaintController {
       console.error(err);
       res.status(400).json({ message: err });
     }
-  }
+  };
   updateSolutionRating = async (req: any, res: any, next: any) => {
     try {
       await complaintService.updateSolutionRating(req, res, next);
@@ -37,7 +37,7 @@ class ComplaintController {
       console.error(err);
       res.status(400).json({ message: err });
     }
-  }
+  };
 
   increaseMisleading = async (req: any, res: any, next: any) => {
     try {
@@ -47,7 +47,7 @@ class ComplaintController {
       console.error(err);
       res.status(400).json({ message: err });
     }
-  }
+  };
 
   deleteComplaint = async (req: any, res: any, next: any) => {
     try {
@@ -61,12 +61,9 @@ class ComplaintController {
 
   getComplaints = async (req: any, res: any, next: any) => {
     try {
-      const complaints = await complaintService.getFilteredComplaints(
-        req,
-        res,
-        next
-      );
-      res.status(200).json({ complaints });
+      const { complaints, count } =
+        await complaintService.getFilteredComplaints(req, res, next);
+      res.status(200).json({ complaints, count });
     } catch (err) {
       console.error(err);
       res.status(400).json({ message: err });
@@ -98,7 +95,7 @@ class ComplaintController {
       console.error(err);
       res.status(400).json({ message: err });
     }
-  }
+  };
   getHighestPriorityLevel = async (req: any, res: any, next: any) => {
     try {
       const complaints = await complaintService.getHighestPriorityLevel(

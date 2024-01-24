@@ -125,6 +125,10 @@ class ComplaintService {
 
       const complaints = await Complaint.findAll({
         where: whereClause,
+        limit: req.query.pageSize ? parseInt(req.query.pageSize) : undefined,
+        offset: req.query.page
+          ? (parseInt(req.query.page) - 1) * parseInt(req.query.pageSize)
+          : 0,
         order: [["createdAt", "DESC"]],
         include: [
           {
@@ -153,7 +157,10 @@ class ComplaintService {
           },
         ],
       });
-      return complaints;
+      const count = await Complaint.count({
+        where: whereClause,
+      });
+      return { complaints, count };
     } catch (err) {
       throw err;
     }
